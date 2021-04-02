@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TokenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::get('token', [TokenController::class, 'index'])->name('token');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',[TokenController::class, 'index'])->name('dashboard');
+
+
